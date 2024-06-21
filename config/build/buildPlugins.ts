@@ -4,6 +4,7 @@ import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import {BuildOptions} from "./type/types";
 import {BundleAnalyzerPlugin} from "webpack-bundle-analyzer";
 import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
+import ReactRefreshWebpackPlugin from "@pmmmwh/react-refresh-webpack-plugin";
 
 
 export function buildPlugins({platform, ...options}: BuildOptions): Configuration['plugins'] {
@@ -24,6 +25,7 @@ export function buildPlugins({platform, ...options}: BuildOptions): Configuratio
         /**move type checking into a separate process:
          makes building the project easier (faster) */
         plugins.push(new ForkTsCheckerWebpackPlugin({}))
+        plugins.push(new ReactRefreshWebpackPlugin())
     }
 
     if (isProd) {
