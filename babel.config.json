@@ -1,0 +1,14 @@
+/** In const babelLoader in buildLoaders.ts we delet options: { } and put here */
+
+{
+  "presets": [
+    "@babel/preset-env",
+    "@babel/preset-typescript",
+    [
+      "@babel/preset-react",
+      {
+        "runtime": "automatic"
+      }
+    ]
+  ]
+}
