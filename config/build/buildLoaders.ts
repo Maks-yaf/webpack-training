@@ -30,7 +30,14 @@ export function buildLoaders(options: BuildOptions): ModuleOptions['rules'] {
 
     const tsxLoader = {
         test: /\.tsx?$/,
-        use: 'ts-loader',
+        use: [
+            {
+                loader: 'ts-loader',
+                options: {
+                    transpileOnly: true
+                }
+            }
+        ],
         exclude: /node_modules/,
     }
 

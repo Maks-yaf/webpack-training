@@ -3,6 +3,7 @@ import HtmlWebpackPlugin from "html-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import {BuildOptions} from "./type/types";
 import {BundleAnalyzerPlugin} from "webpack-bundle-analyzer";
+import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
 
 
 export function buildPlugins({platform, ...options}: BuildOptions): Configuration['plugins'] {
@@ -15,10 +16,14 @@ export function buildPlugins({platform, ...options}: BuildOptions): Configuratio
             __PLATFORM__:JSON.stringify(platform),
             __ENV__:JSON.stringify(options.mode),
         }),
+
     ]
 
     if (isDev) {
         plugins.push(new webpack.ProgressPlugin())
+        /**move type checking into a separate process:
+         makes building the project easier (faster) */
+        plugins.push(new ForkTsCheckerWebpackPlugin({}))
     }
 
     if (isProd) {
