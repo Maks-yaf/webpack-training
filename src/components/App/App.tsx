@@ -31,8 +31,8 @@ export const App = () => {
     // }
 
     return (
-        <div>
-            <h1>PLATFORM={__PLATFORM__}</h1>
+        <div data-testid={"appDataTestId"}>
+            <h1 data-testid={"platformDataTestId"}>PLATFORM={__PLATFORM__}</h1>
             <div>
                 <img width={100} height={100} src={avatarPng} alt="Avatar Png"/>
                 <img width={100} height={100} src={avatarJpg} alt="Avatar Jpg"/>
